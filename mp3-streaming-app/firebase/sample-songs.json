@@ -1,0 +1,79 @@
+{
+  "_comment": "Sample documents for the top-level `songs` collection. Import these with a script (see README) or add them by hand in the Firebase console to try the app without your own library yet.",
+
+  "songs": [
+    {
+      "id": "song_001",
+      "title": "Undertow",
+      "artist": "Nadia Voss",
+      "composer": "N. Voss",
+      "album": "Low Tide Sessions",
+      "coverArt": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&q=80",
+      "audioUrl": "https://actions.google.com/sounds/v1/ambiences/coastal_waves.ogg",
+      "duration": 222,
+      "uploadedAt": "2026-03-02T10:00:00Z"
+    },
+    {
+      "id": "song_002",
+      "title": "Salt & Static",
+      "artist": "Nadia Voss",
+      "composer": "E. Hallum",
+      "album": "Low Tide Sessions",
+      "coverArt": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&q=80",
+      "audioUrl": "audio/song_002.mp3",
+      "duration": 245,
+      "uploadedAt": "2026-03-02T10:02:00Z"
+    },
+    {
+      "id": "song_003",
+      "title": "Ballast",
+      "artist": "Nadia Voss",
+      "composer": "N. Voss",
+      "album": "Low Tide Sessions",
+      "coverArt": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&q=80",
+      "audioUrl": "audio/song_003.mp3",
+      "duration": 178,
+      "uploadedAt": "2026-03-02T10:04:00Z"
+    },
+    {
+      "id": "song_004",
+      "title": "Coastal Drift",
+      "artist": "Marlow Bay",
+      "composer": "Marlow Bay",
+      "album": "Static Bloom",
+      "coverArt": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&q=80",
+      "audioUrl": "audio/song_004.mp3",
+      "duration": 201,
+      "uploadedAt": "2026-02-18T09:00:00Z"
+    },
+    {
+      "id": "song_005",
+      "title": "Amber Hour",
+      "artist": "Marlow Bay",
+      "composer": "Marlow Bay & R. Quinn",
+      "album": "Static Bloom",
+      "coverArt": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&q=80",
+      "audioUrl": "audio/song_005.mp3",
+      "duration": 264,
+      "uploadedAt": "2026-02-18T09:03:00Z"
+    },
+    {
+      "id": "song_006",
+      "title": "Paper Moons",
+      "artist": "June Ferris",
+      "composer": "June Ferris",
+      "album": "Halflight",
+      "coverArt": "https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=400&q=80",
+      "audioUrl": "audio/song_006.mp3",
+      "duration": 189,
+      "uploadedAt": "2026-01-27T14:20:00Z"
+    }
+  ],
+
+  "_notes": [
+    "audioUrl can be either a full https:// download URL (as in song_001) or a Storage path relative to your bucket root (as in song_002-006) — src/firebase/storage.js resolves either form at play time.",
+    "duration is in whole seconds.",
+    "uploadedAt should be a Firestore Timestamp in a real deploy; ISO strings are shown here for readability — when importing programmatically, convert with admin.firestore.Timestamp.fromDate(new Date(iso)).",
+    "uploadedBy/uploadedByName are stamped automatically when a song is added through the in-app Upload page (see useSongUpload) — they're omitted here since these are seeded directly, not uploaded by a user."
+  ]
+}
