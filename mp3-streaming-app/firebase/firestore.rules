@@ -1,0 +1,43 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ⚠️ EDIT THIS: set this to your own login email, exactly as it
+    // appears in Firebase Authentication (case-insensitive comparison is
+    // handled below). This must match VITE_ADMIN_EMAIL in your .env file —
+    // rules can't read your .env, so the value has to be duplicated here.
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email.lower() == "your-email@example.com";
+    }
+
+    // songs/{songId} — the shared library.
+    // Anyone signed in can read (browse/stream) every song — "anyone can
+    // listen". Only the admin account can add, edit, or remove songs —
+    // "only that account can upload or remove".
+    match /songs/{songId} {
+      allow read: if request.auth != null;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // users/{uid} — profile doc, and per-user subcollections for
+    // favorites, history, and playlists. A user may only read/write their
+    // own data (this applies to every listener, including the admin).
+    match /users/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+
+      match /favorites/{songId} {
+        allow read, write: if request.auth != null && request.auth.uid == uid;
+      }
+
+      match /history/{entryId} {
+        allow read, write: if request.auth != null && request.auth.uid == uid;
+      }
+
+      match /playlists/{playlistId} {
+        allow read, write: if request.auth != null && request.auth.uid == uid;
+      }
+    }
+  }
+}
